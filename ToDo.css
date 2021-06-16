@@ -212,8 +212,13 @@ input:focus + span {
     }
 
     .container {
-       min-width: 547px;
+       max-width: 547px;
     }
+
+    #todo-input, .entry{
+        height: 18px;
+        width: 23.94375em;
+        }
 
     header {
         background-image:
@@ -225,6 +230,9 @@ input:focus + span {
         url('images/bg-desktop-dark.jpg');
     }
     
+    #filter-card{
+        font-size: 16px;
+    }
         
 }
 
