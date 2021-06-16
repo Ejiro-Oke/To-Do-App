@@ -204,7 +204,7 @@ input:focus + span {
   color: hsl(220, 98%, 61%);
 }
 
-@media screen and (min-width: 375px){
+/* @media screen and (min-width: 375px){
     
     body {
         font-size: 18px;
@@ -235,4 +235,4 @@ input:focus + span {
     }
         
 }
-
+ */
