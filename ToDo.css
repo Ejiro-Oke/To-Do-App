@@ -84,7 +84,7 @@ border: solid rgba(211, 210, 210, 0.637) 0.5px;
 
 button:hover
  {
-     border: solid 2px;
+    border: solid 2px;
     border-image:linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 
@@ -111,7 +111,6 @@ color: rgba(255, 255, 255, 0.822);
 margin: 0 auto;
 padding: 0;
 max-width: 337.5px;
-border: blue 2px solid;
 overflow: hidden;
 }
 
@@ -232,7 +231,6 @@ input:focus + span {
     
     .container {
         max-width: 38%;
-        border: blue 2px dotted;
     }
         
     #todo-input, .entry{
