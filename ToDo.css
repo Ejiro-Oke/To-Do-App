@@ -6,7 +6,8 @@ body{
     margin: 0 auto;
     font-family: 'Josefin Sans', sans-serif;
     font-size: 16px;
-    width: 375px;
+    width:100%;
+    max-width: 375px;
     background-color: hsl(0, 0%, 98%);
 
 }
@@ -18,7 +19,6 @@ color: hsl(234, 39%, 85%) ;
 body.dark-mode header {
     background-image:
     url('images/bg-mobile-dark.jpg');
-
 }
 body.dark-mode .create-todo,
 body.dark-mode .entry-tab,
@@ -38,7 +38,7 @@ header {
     justify-content: space-between;
     padding: 1rem;
     padding-bottom: 5rem;
-    padding-top: 3em;
+    padding-top: 3.5rem;
     background: no-repeat;
     background-image:
     url('images/bg-mobile-light.jpg');
@@ -46,7 +46,6 @@ header {
 }
 
 .header-container{
-    padding-top: 8em;
     display: flex;
     justify-content: space-between;
 }
@@ -112,6 +111,8 @@ color: rgba(255, 255, 255, 0.822);
 margin: 0 auto;
 padding: 0;
 max-width: 337.5px;
+border: blue 2px solid;
+overflow: hidden;
 }
 
 .create-todo, .entry-tab, 
@@ -156,7 +157,7 @@ display: flex;
 list-style: none;
 justify-content: space-between;
 margin-top: 0;
-font-size: 15px;
+font-size: 14px;
 color: hsl(236, 9%, 61%);
 }
 #filter-card ul li{
@@ -172,8 +173,8 @@ color: hsl(236, 9%, 61%);
 
 .all-active-complete {
 display: flex;
-padding: 6px 0;
 justify-content:center;
+
 }
 
 span{
@@ -204,21 +205,20 @@ input:focus + span {
   color: hsl(220, 98%, 61%);
 }
 
-/* @media screen and (min-width: 375px){
+
+@media (max-width:997px){
+    #big-filter-card{
+        display: none;
+    }
+}
+
+@media (min-width: 997px){
     
     body {
         font-size: 18px;
-        width: 1440px;
+        max-width: 1440px;
+        /* background-color: blueviolet; */
     }
-
-    .container {
-       max-width: 547px;
-    }
-
-    #todo-input, .entry{
-        height: 18px;
-        width: 23.94375em;
-        }
 
     header {
         background-image:
@@ -230,9 +230,50 @@ input:focus + span {
         url('images/bg-desktop-dark.jpg');
     }
     
-    #filter-card{
-        font-size: 16px;
+    .container {
+        max-width: 38%;
+        border: blue 2px dotted;
     }
         
+    #todo-input, .entry{
+        height: 18px;
+        width: 22.4em;
+    }
+       
+    #filter-card {
+        display: none;
+    }
+
+    #big-filter-card {
+        justify-content:space-around;
+        font-size: 14px;
+        }
+        #big-filter-card .task-counter {
+        margin-left:1em;
+        margin-right: auto;
+        justify-self:flex-start ;
+        }
+        #big-filter-card label span{
+        margin: 0.5em;
+        }
+        #big-filter-card .clear-completed {
+        margin-right:1em;
+        text-align: right;
+        margin-left: auto;
+        justify-self:flex-end ;
+        }
+        @media (max-width:1034px){
+            #big-filter-card label span{
+                margin: 0.2em;
+                }
+             #big-filter-card .task-counter {
+                margin-right: 0.7em;
+                }
+                #big-filter-card .clear-completed {
+                margin-left: 0.7em;
+                }
+        }  
+
 }
- */
+
+

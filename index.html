@@ -27,7 +27,7 @@
             <form class="create-todo">
 
             <button id="submit-todo" type="submit"></button>
-            <input type="text" id="todo-input" placeholder="Create an new todo..."required>
+            <input type="text" id="todo-input" placeholder="Create a new todo..."required>
             
             </form>
 
@@ -42,21 +42,62 @@
             </ul>  <!----close todo-list-->
 
         </div><!---close todolist-container-->
-
+        
             <div class="in-active" id="filter-card">
                 <ul class="container" >
                     <li><span class="task-counter"> </span>items left</li>
                     <li class="clear-completed">Clear Completed</li>
                 </ul>
-            </div><!---close filter-card-->
+            </div><!--close filter-card-->
+            
+            <div class= "in-active" id="big-filter-card">
 
+                <form class=" container all-active-complete" >
+                    
+                   <span class="task-counter"> items left</span>
+    
+                    
+                    <label for="all-todos">
+                        <input type="radio"
+                         name="filter-todos" 
+                         class="filter-all" 
+                         id="all-todos" 
+                         value="all" 
+                         checked />
+                        <span>All</span> 
+                     </label>
+    
+                     <label for="active-todos">
+                        <input type="radio"
+                         name="filter-todos" 
+                         class="todos" 
+                         id="active-todos" 
+                         value="active"/>
+                        <span>Active</span> 
+                     </label>
+    
+                     <label for="completed-todos">
+                        <input type="radio"
+                         name="filter-todos" 
+                         class="todos" 
+                         id="completed-todos" 
+                         value="completed"/>
+                        <span>Completed</span> 
+                     </label>  
+    
+                     <span class="clear-completed">Clear Completed</span>
+    
+                </form>
+
+            </div> <!----close big-filter-->
+    
     </header>
 
     <footer>
 
         <div class= "container" id="filter-card">
 
-            <form class="  all-active-complete">
+            <form class="all-active-complete">
                 
                 <label for="all-todos">
                     <input type="radio"

@@ -20,6 +20,7 @@ const todoList = document.querySelector(".todo-list");
 const submitTodo= document.querySelector("#submit-todo");
 const createTodoForm = document.querySelector(".create-todo");
 const filterCard = document.querySelector("#filter-card");
+const bigFilterCard = document.querySelector("#big-filter-card")
 const allActiveComplete = document.querySelector(".all-active-complete")
 const deleteTask = document.querySelector("#delete");
 let taskCounter = document.querySelector(".task-counter")
@@ -30,7 +31,10 @@ let taskCounter = document.querySelector(".task-counter")
 
 createTodoForm.addEventListener("submit", event=>{
     event.preventDefault();
-    filterCard.classList.remove("in-active")
+    if (window.outerWidth >= 997){
+        bigFilterCard.classList.toggle("in-active")
+    }
+    filterCard.classList.toggle("in-active")
     const entryTab = document.createElement('div');
     entryTab.classList.add('entry-tab');
     const singleEntry = document.createElement('li');
@@ -75,67 +79,4 @@ createTodoForm.addEventListener("submit", event=>{
         }
 
 })
-
-
-//  THIS ISNT WORKING. PLEASE LOOK AT THE JPEGS I'VE SENT TO YOU TO SEE WHAT THIS IS SUPPOSED TO LOOK LIKE UPON RESIZE
-// ALSO, MY MEDIA QUERIES ARE'NT WORKING CORRECTLY, THE BROWSER IS IGNORING MY OLD CSS EVEN ON THE SMALL SCREENS
-// SOME POINTERS ON HOW TO GET MY FILTERS WORKING WOULD BE APPRECIATED AS WELL. MY CODE FOR THOSE DIDN'T WORK, SO I DELETED THEM.
-
-    // window.addEventListener("resize", function(){
-    //     if (window.outerWidth > 375){
-    //         let filterHtml = "";
-    
-    //            filterHtml += `
-
-    //            <div class="in-active" id="filter-card">
-    //            <ul class="container" >
-    //                <li><span class="task-counter"> </span>items left</li>
-    //                </ul>
-
-    //                <form class="  all-active-complete">
-               
-    //                <label for="all-todos">
-    //                    <input type="radio"
-    //                     name="filter-todos" 
-    //                     class="filter-all" 
-    //                     id="all-todos" 
-    //                     value="all" 
-    //                     checked />
-    //                    <span>All</span> 
-    //                 </label>
-    
-    //                 <label for="active-todos">
-    //                    <input type="radio"
-    //                     name="filter-todos" 
-    //                     class="todos" 
-    //                     id="active-todos" 
-    //                     value="active"/>
-    //                    <span>Active</span> 
-    //                 </label>
-    
-    //                 <label for="completed-todos">
-    //                    <input type="radio"
-    //                     name="filter-todos" 
-    //                     class="todos" 
-    //                     id="completed-todos" 
-    //                     value="completed"/>
-    //                    <span>Completed</span> 
-    //                 </label>  
-    //            </form>
-    
-
-    //                <ul>
-    //                <li class="clear-completed">Clear Completed</li>
-    //            </ul>
-
-    //    </div>
-    //            `; 
-
-    //            filterCard.innerHTML = filterHtml
-        
-    //         console.log(filterCard.innerHTML)
-    //         console.log(allActiveComplete.innerHTML)
-    //         }
-
-// })
 
