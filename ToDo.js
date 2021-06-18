@@ -26,7 +26,7 @@ const submitTodo= document.querySelector("#submit-todo");
 const createTodoForm = document.querySelector(".create-todo");
 const filterCard = document.querySelector("#filter-card");
 const bigFilterCard = document.querySelector("#big-filter-card");
-const allActiveComplete = document.querySelector(".all-active-complete");
+const allActiveComplete = document.querySelectorAll(".all-active-complete");
 const deleteTask = document.querySelector("#delete");
 
 createTodoForm.addEventListener("submit", event=>{
@@ -94,21 +94,57 @@ window.addEventListener("resize", function(){
     })
 
 
-    // FILTERING TODO ITEMS
+    // COUNTING TODO ITEMS
+
     let completedTasks = document.querySelectorAll("completed-task");
-    let existingTasks = todoList.children.length -1
+    let existingTasks = todoList.children.length -1;
     let taskCounter = document.getElementsByClassName("task-counter");
     for (let i = 0; i < taskCounter.length; i++){
-        taskCounter[i].innerHTML= existingTasks + " "
+        taskCounter[i].innerHTML= existingTasks + " ";
     }
-    const allClear = document.getElementsByClassName("clear-completed");
+    
+    
+    //CLEAR COMPLETED ITEMS
+
+    // const allClear = document.querySelectorAll(".clear-completed");
+    // allClear.addEventListener("click", event=>{
+    //     console.log("meow")
+    //     })
+
+    //ALL/ACTIVE/COMPLETE FILTERING
+
+    // allActiveComplete.addEventListener("change", (e) => {
+    //     const value = e.target.value;
+
+    //     for(let i = 0; i < singleEntry.length; i++){
+
+    //     switch (value) {
+    //       case "all":
+    //           singleEntry[i].style.display ='flex'
+    //         break;
+    //       case "active":
+    //         if(singleEntry[i].classList !== ('.task-completed')){
+    //             singleEntry[i].style.display ="flex"
+    //         }
+    //         else{
+    //             this.parentNode.parentNode.removeChild(this.parentNode);
+    //         }
+    //         break;
+    //       case "completed":
+    //         if(singleEntry[i].classList == ('.task-completed')){
+    //             singleEntry[i].style.display ="flex"
+    //         }
+    //         else{
+    //             this.parentNode.parentNode.removeChild(this.parentNode);
+    //         }
+    //         break;
+    //     }
+    // }
+    //   });
+      
 
 
-
-
-
-
-})
+}) //CLOSE ADD TO DO
 
 
 
