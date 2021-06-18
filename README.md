@@ -10,4 +10,6 @@ The user is able to navigate between Day and Night mode, check, and delete compl
 * classList
 * Custom functions.
 
+I have included psuedo code for easier understanding.
+
 Check it out [here](https://to-do-app-teal-theta.vercel.app/?).

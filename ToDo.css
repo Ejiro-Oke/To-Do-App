@@ -99,7 +99,7 @@ button:focus
 }
 
 #sun, #moon, button, #delete, 
-.entry-tab, #filter-card li, .all-active-complete span{
+.entry-tab, #filter-card li, .clear-completed, .all-active-complete span{
     cursor: pointer;
 } 
 
@@ -150,10 +150,16 @@ border-bottom: hsl(233, 11%, 84%) solid 1px;
 margin: 0 auto
 }
 
+.completed-task{
+    text-decoration: line-through;
+}
+
+li{
+list-style: none;
+}
 
 #filter-card ul{
 display: flex;
-list-style: none;
 justify-content: space-between;
 margin-top: 0;
 font-size: 14px;
@@ -231,6 +237,7 @@ input:focus + span {
     
     .container {
         max-width: 38%;
+        /* border: red 2px solid; */
     }
         
     #todo-input, .entry{
@@ -238,18 +245,24 @@ input:focus + span {
         width: 22.4em;
     }
        
-    #filter-card {
+    #filter-card, .lone-all-active-complete {
         display: none;
     }
 
     #big-filter-card {
+        color: hsl(236, 9%, 61%);
         justify-content:space-around;
         font-size: 14px;
         }
-        #big-filter-card .task-counter {
+        #task-counter {
         margin-left:1em;
         margin-right: auto;
         justify-self:flex-start ;
+        }
+        #task-counter span{
+            color: inherit;
+            font-weight: inherit;
+            margin: 0;
         }
         #big-filter-card label span{
         margin: 0.5em;

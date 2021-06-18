@@ -45,7 +45,7 @@
         
             <div class="in-active" id="filter-card">
                 <ul class="container" >
-                    <li><span class="task-counter"> </span>items left</li>
+                    <li><span class="task-counter"></span>items left</li>
                     <li class="clear-completed">Clear Completed</li>
                 </ul>
             </div><!--close filter-card-->
@@ -54,7 +54,7 @@
 
                 <form class=" container all-active-complete" >
                     
-                   <span class="task-counter"> items left</span>
+                  <li id="task-counter"><span class="task-counter"></span>items left</li>
     
                     
                     <label for="all-todos">
@@ -85,19 +85,20 @@
                         <span>Completed</span> 
                      </label>  
     
-                     <span class="clear-completed">Clear Completed</span>
+                     <li class="clear-completed">Clear Completed</li>
     
                 </form>
 
             </div> <!----close big-filter-->
     
     </header>
+    
 
     <footer>
 
-        <div class= "container" id="filter-card">
+        <div class= "container" id="">
 
-            <form class="all-active-complete">
+            <form class="all-active-complete lone-all-active-complete">
                 
                 <label for="all-todos">
                     <input type="radio"
