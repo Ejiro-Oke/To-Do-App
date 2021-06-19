@@ -15,7 +15,7 @@ suN.addEventListener("click", function(){
     element.classList.remove("dark-mode");
     mooN.classList.toggle("in-active");
     suN.classList.add("in-active")
-})
+}) 
 
 
 // CREATING A NEW TODO ENTRY//
@@ -29,7 +29,9 @@ const bigFilterCard = document.querySelector("#big-filter-card");
 const allActiveComplete = document.querySelectorAll(".all-active-complete");
 const deleteTask = document.querySelector("#delete");
 
-    // COUNTING TODO ITEMS
+
+    // COUNTING TODO ITEMS//
+
     function activeItemCount(){
         let completedTasks = document.querySelectorAll(".completed-task");
         let existingTasks = todoList.children.length++;
@@ -37,21 +39,28 @@ const deleteTask = document.querySelector("#delete");
         for (let i = 0; i < taskCounter.length; i++){
             taskCounter[i].innerHTML= existingTasks + " ";
         }    
-    }
-//
+    } 
 
 
 //SUBMITTING AN ENTRY TO THE DOM//
+
 createTodoForm.addEventListener("submit", event=>{
 
     event.preventDefault();
+
+
+    //SWICHING FILTERCARDS TO FIT WINDOW SIZE//
 
     if (window.outerWidth >= 997){
         bigFilterCard.classList.remove("in-active")
     } else{
         filterCard.classList.remove("in-active")
     }
+
     activeItemCount()
+
+
+    //FORMING TODO ITEM//
 
     const entryTab = document.createElement('div');
     entryTab.classList.add('entry-tab');
@@ -59,25 +68,40 @@ createTodoForm.addEventListener("submit", event=>{
     singleEntry.innerHTML = todoInput.value;
     singleEntry.classList.add('entry');
 
+
+    //APPENDING TASK-COMPLETED BUTTON//
+
     const taskcompletedButton = document.createElement('button');
     taskcompletedButton.setAttribute("id",'complete_btn')
     entryTab.appendChild(taskcompletedButton);
     
+
+    //APPENDING TODO-ITEM TO DIV//
+
     entryTab.appendChild(singleEntry);
 
     if(todoInput.value === ""){
         return null
     }
-  
+    
+
+    //APPENDING TODO-DIV TO DOM//
+
     todoList.appendChild(entryTab);
     todoInput.value=""
     submitTodo.blur();
 
+
+    //ADDING FUNCTIONALITY TASK-COMPLETED BUTTON//
+    
     taskcompletedButton.addEventListener("click", event=>{
         event.preventDefault();
         singleEntry.classList.add("completed-task");
         taskcompletedButton.focus();
-        })
+        }) 
+
+
+    //TOGGLING DELETE-TASK-BUTTON VISIBILITY//
 
     entryTab.addEventListener("mousemove", event=>{
         entryTab.appendChild(deleteTask)
@@ -87,6 +111,9 @@ createTodoForm.addEventListener("submit", event=>{
     entryTab.addEventListener("mouseout", function(){
         deleteTask.classList.add("in-active");
         })
+    
+
+    //ADDING FUNCTIONALITY TO DELETE-TASK-BUTTON//
     
     const deleteTaskS = document.querySelectorAll("#delete");
         for (let i = 0; i < deleteTaskS.length; i++){
@@ -101,12 +128,10 @@ createTodoForm.addEventListener("submit", event=>{
 
 window.addEventListener("resize", function(){
     if  (window.outerWidth >= 997 && entryTab.classList == "entry-tab" && filterCard.classList !== "in-active"){
-        // console.log("meow");
         bigFilterCard.classList.remove("in-active")
         }
 
     if (window.outerWidth < 997 && entryTab.classList !== "entry-tab" && filterCard.classList == "in-active") {
-        // console.log("woof");
         filterCard.classList.remove("in-active")
         } 
     })

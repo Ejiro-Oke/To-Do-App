@@ -4,7 +4,7 @@
 
 body{
     margin: 0 auto;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Josefin Sans', serif;
     font-size: 16px;
     width:100%;
     max-width: 375px;
@@ -22,7 +22,6 @@ body.dark-mode header {
 }
 body.dark-mode .create-todo,
 body.dark-mode .entry-tab,
-body.dark-mode button,
 body.dark-mode #todo-input,
 body.dark-mode #filter-card ul,
 body.dark-mode .all-active-complete
@@ -63,8 +62,20 @@ size: 5px;
     display: none;
 }
 
+input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+.checkmark{
+  position: absolute;
+  /* top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px; */
+  background-color: red;
+}
 
-button, #delete {
+button, .checkmark, #delete {
 margin: auto 1em;
 align-items: center;
 height: 21px;
@@ -72,24 +83,27 @@ width: 21px;
 }
 
 #delete {
-justify-content: flex-end;
-padding-right:0;
+align-self:flex-end;
 }
 
-button{
-border-radius: 100%;
-background-color: #fff;
+button, .checkmark{
+height: 25px;
+width: 25px;
+border-radius: 50%;
+margin-right: 0;
+background-color: rgba(255, 255, 255, 0);
 border: solid rgba(211, 210, 210, 0.637) 0.5px;
 }
 
-button:hover
+button:hover,
+.checkmark:hover
  {
     border: solid 2px;
     border-image:linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 
-button:focus
-{ 
+button:focus,
+.custom-checkbox input:checked ~ .checkmark { 
     background:
     url('images/icon-check.svg'),
     linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
@@ -135,8 +149,8 @@ overflow: hidden;
 height: 16px;
 width: 14.84375em;
 border: 0;
-margin: auto 0.3em;
-margin-left: 0.3em;
+margin: auto 1em;
+/* margin-left: 0.3em; */
 outline: none;
 }
 
