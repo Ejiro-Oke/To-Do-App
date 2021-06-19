@@ -29,13 +29,30 @@ const bigFilterCard = document.querySelector("#big-filter-card");
 const allActiveComplete = document.querySelectorAll(".all-active-complete");
 const deleteTask = document.querySelector("#delete");
 
+    // COUNTING TODO ITEMS
+    function activeItemCount(){
+        let completedTasks = document.querySelectorAll(".completed-task");
+        let existingTasks = todoList.children.length++;
+        let taskCounter = document.getElementsByClassName("task-counter");
+        for (let i = 0; i < taskCounter.length; i++){
+            taskCounter[i].innerHTML= existingTasks + " ";
+        }    
+    }
+//
+
+
+//SUBMITTING AN ENTRY TO THE DOM//
 createTodoForm.addEventListener("submit", event=>{
+
     event.preventDefault();
+
     if (window.outerWidth >= 997){
         bigFilterCard.classList.remove("in-active")
     } else{
         filterCard.classList.remove("in-active")
     }
+    activeItemCount()
+
     const entryTab = document.createElement('div');
     entryTab.classList.add('entry-tab');
     const singleEntry = document.createElement('li');
@@ -60,8 +77,8 @@ createTodoForm.addEventListener("submit", event=>{
         event.preventDefault();
         singleEntry.classList.add("completed-task");
         taskcompletedButton.focus();
-        // console.log(singleEntry.classList)
         })
+
     entryTab.addEventListener("mousemove", event=>{
         entryTab.appendChild(deleteTask)
         deleteTask.classList.remove("in-active");    
@@ -74,6 +91,7 @@ createTodoForm.addEventListener("submit", event=>{
     const deleteTaskS = document.querySelectorAll("#delete");
         for (let i = 0; i < deleteTaskS.length; i++){
             deleteTaskS[i].addEventListener("click", function(){
+                activeItemCount()
                 this.parentNode.parentNode.removeChild(this.parentNode);
             })        
         }
@@ -92,16 +110,6 @@ window.addEventListener("resize", function(){
         filterCard.classList.remove("in-active")
         } 
     })
-
-
-    // COUNTING TODO ITEMS
-
-    let completedTasks = document.querySelectorAll("completed-task");
-    let existingTasks = todoList.children.length -1;
-    let taskCounter = document.getElementsByClassName("task-counter");
-    for (let i = 0; i < taskCounter.length; i++){
-        taskCounter[i].innerHTML= existingTasks + " ";
-    }
     
     
     //CLEAR COMPLETED ITEMS
@@ -144,8 +152,7 @@ window.addEventListener("resize", function(){
       
 
 
-}) //CLOSE ADD TO DO
-
+}) //CLOSE ENTRY SUBMISSION
 
 
 
