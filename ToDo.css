@@ -113,7 +113,7 @@ button:focus,
 }
 
 #sun, #moon, button, #delete, 
-.entry-tab, #filter-card li, .clear-completed, .all-active-complete span{
+.entry-tab, #filter-card li, #clear-completed, .all-active-complete span{
     cursor: pointer;
 } 
 
@@ -186,7 +186,7 @@ color: hsl(236, 9%, 61%);
 .task-counter {
     justify-self: flex-start;
 }
-.clear-completed{
+#clear-completed{
     justify-self: flex-end;
 }
 
@@ -214,7 +214,7 @@ input[type="radio"] {
 
 input:hover + span,
 .task-counter:hover,
-.clear-completed:hover
+#clear-completed:hover
 {
 transition: all .3s ease;
  color: hsl(235, 19%, 35%)
@@ -281,7 +281,7 @@ input:focus + span {
         #big-filter-card label span{
         margin: 0.5em;
         }
-        #big-filter-card .clear-completed {
+        #big-filter-card #clear-completed {
         margin-right:1em;
         text-align: right;
         margin-left: auto;
@@ -294,7 +294,7 @@ input:focus + span {
              #big-filter-card .task-counter {
                 margin-right: 0.7em;
                 }
-                #big-filter-card .clear-completed {
+                #big-filter-card #clear-completed {
                 margin-left: 0.7em;
                 }
         }  

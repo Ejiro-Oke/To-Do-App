@@ -26,18 +26,19 @@ const submitTodo= document.querySelector("#submit-todo");
 const createTodoForm = document.querySelector(".create-todo");
 const filterCard = document.querySelector("#filter-card");
 const bigFilterCard = document.querySelector("#big-filter-card");
-const allActiveComplete = document.querySelectorAll(".all-active-complete");
+const allActiveComplete = document.querySelector(".all-active-complete");
 const deleteTask = document.querySelector("#delete");
 
 
     // COUNTING TODO ITEMS//
 
     function activeItemCount(){
-        let completedTasks = document.querySelectorAll(".completed-task");
-        let existingTasks = todoList.children.length++;
+        let todoItems = todoList.children.length 
+        let activeItemsCount = todoItems - document.querySelectorAll(".completed-task").length -1
+        let existingTasks = activeItemsCount++;
         let taskCounter = document.getElementsByClassName("task-counter");
         for (let i = 0; i < taskCounter.length; i++){
-            taskCounter[i].innerHTML= existingTasks + " ";
+            taskCounter[i].innerHTML= activeItemsCount + " ";
         }    
     } 
 
@@ -47,6 +48,7 @@ const deleteTask = document.querySelector("#delete");
 createTodoForm.addEventListener("submit", event=>{
 
     event.preventDefault();
+    activeItemCount()
 
 
     //SWICHING FILTERCARDS TO FIT WINDOW SIZE//
@@ -57,7 +59,7 @@ createTodoForm.addEventListener("submit", event=>{
         filterCard.classList.remove("in-active")
     }
 
-    activeItemCount()
+    // activeItemCount()
 
 
     //FORMING TODO ITEM//
@@ -67,6 +69,7 @@ createTodoForm.addEventListener("submit", event=>{
     const singleEntry = document.createElement('li');
     singleEntry.innerHTML = todoInput.value;
     singleEntry.classList.add('entry');
+    singleEntry.setAttribute("id", "active-todos")
 
 
     //APPENDING TASK-COMPLETED BUTTON//
@@ -96,10 +99,33 @@ createTodoForm.addEventListener("submit", event=>{
     
     taskcompletedButton.addEventListener("click", event=>{
         event.preventDefault();
-        singleEntry.classList.add("completed-task");
-        taskcompletedButton.focus();
+        if (singleEntry.classList.contains("completed-task")){
+            singleEntry.removeAttribute("id", "completed-todos")
+            singleEntry.classList.remove("completed-task")
+        }
+        else{
+            singleEntry.removeAttribute("id", "active-todos")
+            singleEntry.setAttribute("id", "completed-todos")
+            singleEntry.classList.add("completed-task");
+            taskcompletedButton.focus();
+        }
+        activeItemCount()
         }) 
 
+
+    // CLEAR COMPLETED ITEMS
+    
+        document.querySelector("#clear-completed").addEventListener("click", event=>{
+        event.preventDefault();
+        if (singleEntry.classList.contains("completed-task")){
+            // singleEntry.style.display = "none"
+            entryTab.removeChild(singleEntry)
+            entryTab.removeChild(taskcompletedButton)
+           entryTab.classList.remove("entry-tab")
+           entryTab.classList.add("in-active")         
+        }
+        }) 
+    
 
     //TOGGLING DELETE-TASK-BUTTON VISIBILITY//
 
@@ -118,8 +144,8 @@ createTodoForm.addEventListener("submit", event=>{
     const deleteTaskS = document.querySelectorAll("#delete");
         for (let i = 0; i < deleteTaskS.length; i++){
             deleteTaskS[i].addEventListener("click", function(){
-                activeItemCount()
                 this.parentNode.parentNode.removeChild(this.parentNode);
+                activeItemCount()
             })        
         }
 
@@ -137,46 +163,43 @@ window.addEventListener("resize", function(){
     })
     
     
-    //CLEAR COMPLETED ITEMS
-
-    // const allClear = document.querySelectorAll(".clear-completed");
-    // allClear.addEventListener("click", event=>{
-    //     console.log("meow")
-    //     })
 
     //ALL/ACTIVE/COMPLETE FILTERING
 
-    // allActiveComplete.addEventListener("change", (e) => {
-    //     const value = e.target.value;
+    allActiveComplete.addEventListener("change", event => {
+        let completedTasks = document.querySelectorAll(".completed-task") ;
+        const value = event.target.value; 
+        
+        switch (value) {
+             case "all":
+                if (singleEntry.classList.contains("completed-task")){
+                    entryTab.style.display = "flex"
+                }
+                if (!singleEntry.classList.contains("completed-task")){
+                    entryTab.style.display = "flex"
+                }
 
-    //     for(let i = 0; i < singleEntry.length; i++){
+             break
+             case "active":
+                if (singleEntry.classList.contains("completed-task")){
+                    entryTab.style.display = "none"
+                }
+                if (!singleEntry.classList.contains("completed-task")){
+                    entryTab.style.display = "flex"
+                }
+             break
+             case "completed":
+                if (singleEntry.classList.contains("completed-task")){
+                    entryTab.style.display = "flex"
 
-    //     switch (value) {
-    //       case "all":
-    //           singleEntry[i].style.display ='flex'
-    //         break;
-    //       case "active":
-    //         if(singleEntry[i].classList !== ('.task-completed')){
-    //             singleEntry[i].style.display ="flex"
-    //         }
-    //         else{
-    //             this.parentNode.parentNode.removeChild(this.parentNode);
-    //         }
-    //         break;
-    //       case "completed":
-    //         if(singleEntry[i].classList == ('.task-completed')){
-    //             singleEntry[i].style.display ="flex"
-    //         }
-    //         else{
-    //             this.parentNode.parentNode.removeChild(this.parentNode);
-    //         }
-    //         break;
-    //     }
-    // }
-    //   });
-      
-
-
+                }
+                if (!singleEntry.classList.contains("completed-task")){
+                    entryTab.style.display = "none"
+                }
+             break
+        }
+    })
+     
 }) //CLOSE ENTRY SUBMISSION
 
 
