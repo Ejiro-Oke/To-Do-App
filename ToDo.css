@@ -89,10 +89,10 @@ align-self:flex-end;
 button, .checkmark{
 height: 25px;
 width: 25px;
-border-radius: 50%;
 margin-right: 0;
 background-color: rgba(255, 255, 255, 0);
 border: solid rgba(211, 210, 210, 0.637) 0.5px;
+border-radius: 50%;
 }
 
 button:hover,
@@ -102,7 +102,7 @@ button:hover,
     border-image:linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 
-button:focus,
+button:focus, .button-active,
 .custom-checkbox input:checked ~ .checkmark { 
     background:
     url('images/icon-check.svg'),
@@ -166,6 +166,7 @@ margin: 0 auto
 
 .completed-task{
     text-decoration: line-through;
+    color: hsl(236, 9%, 61%);
 }
 
 li{
@@ -203,6 +204,11 @@ span{
 input[type="radio"] {
     position: absolute;
     opacity: 0;
+    width: 3em;
+    cursor: pointer;
+}
+input[type="radio"].completed-radio{
+    width: 5.5em;
 }
   .all-active-complete span{
       margin:auto 0.5em;

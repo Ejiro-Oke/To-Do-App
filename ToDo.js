@@ -44,6 +44,14 @@ const deleteTask = document.querySelector("#delete");
 
 
 //SUBMITTING AN ENTRY TO THE DOM//
+submitTodo.addEventListener("mousedown", function(){
+    submitTodo.classList.add("button-active")
+
+})
+submitTodo.addEventListener("mouseup", function(){
+    submitTodo.classList.remove("button-active")
+
+})
 
 createTodoForm.addEventListener("submit", event=>{
 
@@ -58,8 +66,6 @@ createTodoForm.addEventListener("submit", event=>{
     } else{
         filterCard.classList.remove("in-active")
     }
-
-    // activeItemCount()
 
 
     //FORMING TODO ITEM//
@@ -92,7 +98,6 @@ createTodoForm.addEventListener("submit", event=>{
 
     todoList.appendChild(entryTab);
     todoInput.value=""
-    submitTodo.blur();
 
 
     //ADDING FUNCTIONALITY TASK-COMPLETED BUTTON//
@@ -102,12 +107,14 @@ createTodoForm.addEventListener("submit", event=>{
         if (singleEntry.classList.contains("completed-task")){
             singleEntry.removeAttribute("id", "completed-todos")
             singleEntry.classList.remove("completed-task")
+            taskcompletedButton.classList.remove("button-active");
+            taskcompletedButton.blur()
         }
         else{
             singleEntry.removeAttribute("id", "active-todos")
             singleEntry.setAttribute("id", "completed-todos")
             singleEntry.classList.add("completed-task");
-            taskcompletedButton.focus();
+            taskcompletedButton.classList.add("button-active");
         }
         activeItemCount()
         }) 
