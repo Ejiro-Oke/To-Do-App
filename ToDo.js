@@ -1,93 +1,113 @@
 
-// DAY AND NIGHT MODE TOGGLE//
+    // DAY AND NIGHT MODE TOGGLE//
 
-const suN = document.querySelector("#sun");
-const mooN = document.querySelector("#moon");
-const element = document.body;
+    const suN = document.querySelector("#sun");
+    const mooN = document.querySelector("#moon");
+    const element = document.body;
 
-mooN.addEventListener("click", function(){
-  element.classList.toggle("dark-mode");
-  suN.classList.toggle("in-active");
-  mooN.classList.add("in-active")
-})
+    mooN.addEventListener("click", function(){
+    element.classList.toggle("dark-mode");
+    suN.classList.toggle("in-active");
+    mooN.classList.add("in-active")
+    })
 
-suN.addEventListener("click", function(){
-    element.classList.remove("dark-mode");
-    mooN.classList.toggle("in-active");
-    suN.classList.add("in-active")
-}) 
+    suN.addEventListener("click", function(){
+        element.classList.remove("dark-mode");
+        mooN.classList.toggle("in-active");
+        suN.classList.add("in-active")
+    }) 
 
 
-// CREATING A NEW TODO ENTRY//
+    // CREATING A NEW TODO ENTRY//
 
-const todoInput = document.querySelector("#todo-input");
-const todoList = document.querySelector(".todo-list");
-const submitTodo= document.querySelector("#submit-todo");
-const createTodoForm = document.querySelector(".create-todo");
-const filterCard = document.querySelector("#filter-card");
-const bigFilterCard = document.querySelector("#big-filter-card");
-const allActiveComplete = document.querySelector(".all-active-complete");
-const deleteTask = document.querySelector("#delete");
+    const todoInput = document.querySelector("#todo-input");
+    const todoList = document.querySelector(".todo-list");
+    const submitTodo= document.querySelector("#submit-todo");
+    const createTodoForm = document.querySelector(".create-todo");
+    const filterCard = document.querySelector("#filter-card");
+    const bigFilterCard = document.querySelector("#big-filter-card");
+    const allActiveComplete = document.querySelector(".all-active-complete");
+    const deleteTask = document.querySelector("#delete");
 
 
     // COUNTING TODO ITEMS//
 
     function activeItemCount(){
-        let todoItems = todoList.children.length 
-        let activeItemsCount = todoItems - document.querySelectorAll(".completed-task").length -1
-        let existingTasks = activeItemsCount++;
-        let taskCounter = document.getElementsByClassName("task-counter");
+        
+    let activeItemsCount = document.querySelectorAll("#active-todos").length -2
+    let existingTasks = activeItemsCount++;
+    let taskCounter = document.getElementsByClassName("task-counter");
         for (let i = 0; i < taskCounter.length; i++){
-            taskCounter[i].innerHTML= activeItemsCount + " ";
+        taskCounter[i].innerHTML= existingTasks + " ";
         }    
-    } 
+
+    }
 
 
-//SUBMITTING AN ENTRY TO THE DOM//
-submitTodo.addEventListener("mousedown", function(){
-    submitTodo.classList.add("button-active")
+    //SUBMITTING AN ENTRY TO THE DOM//
 
-})
-submitTodo.addEventListener("mouseup", function(){
-    submitTodo.classList.remove("button-active")
+    submitTodo.addEventListener("mousedown", function(){
+        submitTodo.classList.add("button-active")
 
-})
+    })
+    submitTodo.addEventListener("mouseup", function(){
+        submitTodo.classList.remove("button-active")
 
-createTodoForm.addEventListener("submit", event=>{
+    })
 
-    event.preventDefault();
-    activeItemCount()
+    createTodoForm.addEventListener("submit", event=>{
+
+        event.preventDefault();
+        activeItemCount()
 
 
     //SWICHING FILTERCARDS TO FIT WINDOW SIZE//
 
     if (window.outerWidth >= 997){
-        bigFilterCard.classList.remove("in-active")
-    } else{
-        filterCard.classList.remove("in-active")
+            bigFilterCard.classList.remove("in-active")
+    } 
+    else {
+            filterCard.classList.remove("in-active")
     }
 
 
     //FORMING TODO ITEM//
 
-    const entryTab = document.createElement('div');
-    entryTab.classList.add('entry-tab');
-    const singleEntry = document.createElement('li');
+    const entryTab = document.createElement("div");
+    entryTab.classList.add("entry-tab");
+    const singleEntry = document.createElement("li");
     singleEntry.innerHTML = todoInput.value;
-    singleEntry.classList.add('entry');
+    singleEntry.classList.add("entry");
     singleEntry.setAttribute("id", "active-todos")
 
 
     //APPENDING TASK-COMPLETED BUTTON//
 
-    const taskcompletedButton = document.createElement('button');
-    taskcompletedButton.setAttribute("id",'complete_btn')
+    const taskcompletedButton = document.createElement("button");
+    taskcompletedButton.setAttribute("id","complete_btn")
     entryTab.appendChild(taskcompletedButton);
     
 
     //APPENDING TODO-ITEM TO DIV//
 
     entryTab.appendChild(singleEntry);
+
+
+    //APPENDING DELETE-BUTTON (FOR MOBILE-SCREENS) AND ADDING FUNCTIONALITY//
+    let deleteTasksclone = document.querySelector("#delete").cloneNode( true );
+
+    if(screen.width < 997){
+    deleteTasksclone.setAttribute( "id", "delete" );
+    entryTab.appendChild(deleteTasksclone);
+    deleteTasksclone.classList.remove("in-active")
+
+    for (let i = 0; i < deleteTasksclone.length; i++){
+        deleteTasksclone[i].addEventListener("click", function(){
+            this.parentNode.parentNode.removeChild(this.parentNode);
+            activeItemCount()
+        })        
+    } 
+    }
 
     if(todoInput.value === ""){
         return null
@@ -100,90 +120,31 @@ createTodoForm.addEventListener("submit", event=>{
     todoInput.value=""
 
 
-
     // MAKING THE ENTRY-TABS DRAGGABLE //
 
+    // function allowDrop(event) {
+    //     event.preventDefault();
+    // }
+    
+    // function drag(event) {
+    //     event.dataTransfer.setData("text", event.target.id);
+        
+    // }
+    
+    // function drop(event) {
+    //     const data = event.dataTransfer.getData("text");
+    //     event.target.appendChild(document.getElementById(data));
 
-
-
-// //     var list = document.getElementById('list')
-// var base, randomized, dragging, draggedOver;
-// // // var isRight = 'Not In Order!';
-
-// // const reorderables = (todoList) => {
-// //   base = todoList.slice()
-// //   randomized = todoList.sort(() => Math.random() - 0.5)
-// //   if (randomized.join("") !== base.join("")){
-// //       renderItems(randomized)
-// //    } else {
-// //      //recursion to account if the randomization returns the original array
-// //      reorderables()
-// //    }
-// // }
-
-// const renderItems = (data) =>{
-// //   document.getElementById('isRight').innerText = isRight
-//   todoList.innerText = ''
-//   data.forEach(item=>{
-//     // var node = document.createElement("li");    
-//     entryTab.draggable = true
-//     // entryTab.style.backgroundColor = item
-//     // node.style.backgroundColor = node.style.backgroundColor.length > 0  
-//     // ? item : 'lightblue'
-//     entryTab.addEventListener('drag', setDragging) 
-//     entryTab.addEventListener('dragover', setDraggedOver)
-//     entryTab.addEventListener('drop', compare) 
-//     // node.innerText = item
-//     todoList.appendChild(entryTab)
-//   })
-// }
-
-// const compare = (e) =>{
-//   var index1 = randomized.indexOf(dragging);
-//   var index2 = randomized.indexOf(draggedOver);
-//   randomized.splice(index1, 1)
-//   randomized.splice(index2, 0, dragging)
-  
-//   renderItems(randomized)
-// };
-
-
-// const setDraggedOver = (e) => {
-//   e.preventDefault();
-//   draggedOver = Number.isNaN(parseInt(e.target.innerText)) ? e.target.innerText : parseInt(e.target.innerText)
-// }
-
-// const setDragging = (e) =>{
-//   dragging = Number.isNaN(parseInt(e.target.innerText)) ? e.target.innerText : parseInt(e.target.innerText)
-// }
-
-
-
-
-
+    //     const dropZone = event.target
+    //     dropzone.appendChild(singleEntry)
+    //     event.dataTransfer.clearData();
+    // }
 
     // entryTab.draggable = true
-    // // entryTab.addEventListener('drag', setDragging); 
-    // const setDragging = (e) =>{
-    //     dragging = parseInt(e.target.innerText)
-    //   }
-    // // entryTab.addEventListener('dragover', setDraggedOver);
-    // function setDraggedOver(e) {
-    //     e.preventDefault();
-    //     draggedOver = parseInt(e.target.innerText)
-    //   }
-    // // entryTab.addEventListener('drop', compare);
-    // const compare = (e) =>{
-    //     var index1 = randomized.indexOf(dragging);
-    //     var index2 = randomized.indexOf(draggedOver);
-    //     randomized.splice(index1, 1)
-    //     randomized.splice(index2, 0, dragging)
-       
-    //     // isRight = randomized.join("") === base.join("") 
-    //     //   ? 'In Order!': 'Not In Order!'
-        
-    //     renderItems(randomized)
-    //   };
+    //     singleEntry.addEventListener("dragstart", drag)
+    //     entryTab.addEventListener("drop", drop)
+    //     entryTab.addEventListener("dragover", allowDrop)
+
 
     //ADDING FUNCTIONALITY TASK-COMPLETED BUTTON//
     
@@ -205,17 +166,22 @@ createTodoForm.addEventListener("submit", event=>{
         }) 
 
 
-    //TOGGLING DELETE-TASK-BUTTON VISIBILITY//
+    //TOGGLING DELETE-TASK-BUTTON VISIBILITY (ON BIG-SCREENS)//
 
+    function deleteToggle(){
     entryTab.addEventListener("mousemove", event=>{
         entryTab.appendChild(deleteTask)
         deleteTask.classList.remove("in-active");    
-        })
-
-    entryTab.addEventListener("mouseout", function(){
-        deleteTask.classList.add("in-active");
-        })
+         })
     
+    entryTab.addEventListener("mouseout", function(){
+         deleteTask.classList.add("in-active");
+         })
+    
+    }
+    if (screen.width >= 997){
+        deleteToggle()
+    }
 
     //ADDING FUNCTIONALITY TO DELETE-TASK-BUTTON//
     
@@ -228,17 +194,22 @@ createTodoForm.addEventListener("submit", event=>{
         }
 
 
- // RESIZING THE WINDOW AMIDST ACTIVITY//
 
-window.addEventListener("resize", function(){
-    if  (window.outerWidth >= 997 && entryTab.classList == "entry-tab" && filterCard.classList !== "in-active"){
-        bigFilterCard.classList.remove("in-active")
+    // RESIZING THE WINDOW AMIDST ACTIVITY//
+
+    window.addEventListener("resize", function(){
+        if (window.outerWidth >= 997) {
+            deleteTasksclone.classList.add("in-active");
+            deleteToggle();
         }
+        if (window.outerWidth >= 997 && entryTab.classList == "entry-tab" && filterCard.classList !== "in-active"){
+            bigFilterCard.classList.remove("in-active")
+            }
 
-    if (window.outerWidth < 997 && entryTab.classList !== "entry-tab" && filterCard.classList == "in-active") {
-        filterCard.classList.remove("in-active")
-        } 
-    })
+        if (window.outerWidth < 997 && entryTab.classList !== "entry-tab" && filterCard.classList == "in-active") {
+            filterCard.classList.remove("in-active")
+            } 
+        })
     
     
     // // CLEAR COMPLETED ITEMS
@@ -254,12 +225,11 @@ window.addEventListener("resize", function(){
             entryTab.removeChild(singleEntry)
             entryTab.removeChild(taskcompletedButton)
             todoList.removeChild(entryTab)    
+            
         }
         }) }
         activeItemCount()
     
-
-
 
     //ALL/ACTIVE/COMPLETE FILTERING
 
