@@ -27,6 +27,7 @@ body.dark-mode #filter-card ul,
 body.dark-mode .all-active-complete
 {
     background-color: hsl(235, 24%, 19%);    
+    box-shadow: none;
 }
 body.dark-mode #todo-input{
     color: hsl(236, 9%, 61%);

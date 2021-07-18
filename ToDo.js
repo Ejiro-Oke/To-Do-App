@@ -26,7 +26,7 @@
     const createTodoForm = document.querySelector(".create-todo");
     const filterCard = document.querySelector("#filter-card");
     const bigFilterCard = document.querySelector("#big-filter-card");
-    const allActiveComplete = document.querySelector(".all-active-complete");
+    const allActiveComplete = document.querySelectorAll(".all-active-complete");
     const deleteTask = document.querySelector("#delete");
 
 
@@ -232,8 +232,9 @@
     
 
     //ALL/ACTIVE/COMPLETE FILTERING
-
-    allActiveComplete.addEventListener("change", event => {
+    // document.querySelector(".lone-all-active-complete").value = allActiveComplete.value
+    for(let i =0; i < allActiveComplete.length; ++i){
+    allActiveComplete[i].addEventListener("change", event => {
         let completedTasks = document.querySelectorAll(".completed-task") ;
         const value = event.target.value; 
         
@@ -266,7 +267,7 @@
              break
         }
     })
-    
+}
      
 }) //CLOSE ENTRY SUBMISSION
 
