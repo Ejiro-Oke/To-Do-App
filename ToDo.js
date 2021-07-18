@@ -100,6 +100,91 @@ createTodoForm.addEventListener("submit", event=>{
     todoInput.value=""
 
 
+
+    // MAKING THE ENTRY-TABS DRAGGABLE //
+
+
+
+
+// //     var list = document.getElementById('list')
+// var base, randomized, dragging, draggedOver;
+// // // var isRight = 'Not In Order!';
+
+// // const reorderables = (todoList) => {
+// //   base = todoList.slice()
+// //   randomized = todoList.sort(() => Math.random() - 0.5)
+// //   if (randomized.join("") !== base.join("")){
+// //       renderItems(randomized)
+// //    } else {
+// //      //recursion to account if the randomization returns the original array
+// //      reorderables()
+// //    }
+// // }
+
+// const renderItems = (data) =>{
+// //   document.getElementById('isRight').innerText = isRight
+//   todoList.innerText = ''
+//   data.forEach(item=>{
+//     // var node = document.createElement("li");    
+//     entryTab.draggable = true
+//     // entryTab.style.backgroundColor = item
+//     // node.style.backgroundColor = node.style.backgroundColor.length > 0  
+//     // ? item : 'lightblue'
+//     entryTab.addEventListener('drag', setDragging) 
+//     entryTab.addEventListener('dragover', setDraggedOver)
+//     entryTab.addEventListener('drop', compare) 
+//     // node.innerText = item
+//     todoList.appendChild(entryTab)
+//   })
+// }
+
+// const compare = (e) =>{
+//   var index1 = randomized.indexOf(dragging);
+//   var index2 = randomized.indexOf(draggedOver);
+//   randomized.splice(index1, 1)
+//   randomized.splice(index2, 0, dragging)
+  
+//   renderItems(randomized)
+// };
+
+
+// const setDraggedOver = (e) => {
+//   e.preventDefault();
+//   draggedOver = Number.isNaN(parseInt(e.target.innerText)) ? e.target.innerText : parseInt(e.target.innerText)
+// }
+
+// const setDragging = (e) =>{
+//   dragging = Number.isNaN(parseInt(e.target.innerText)) ? e.target.innerText : parseInt(e.target.innerText)
+// }
+
+
+
+
+
+
+    // entryTab.draggable = true
+    // // entryTab.addEventListener('drag', setDragging); 
+    // const setDragging = (e) =>{
+    //     dragging = parseInt(e.target.innerText)
+    //   }
+    // // entryTab.addEventListener('dragover', setDraggedOver);
+    // function setDraggedOver(e) {
+    //     e.preventDefault();
+    //     draggedOver = parseInt(e.target.innerText)
+    //   }
+    // // entryTab.addEventListener('drop', compare);
+    // const compare = (e) =>{
+    //     var index1 = randomized.indexOf(dragging);
+    //     var index2 = randomized.indexOf(draggedOver);
+    //     randomized.splice(index1, 1)
+    //     randomized.splice(index2, 0, dragging)
+       
+    //     // isRight = randomized.join("") === base.join("") 
+    //     //   ? 'In Order!': 'Not In Order!'
+        
+    //     renderItems(randomized)
+    //   };
+
     //ADDING FUNCTIONALITY TASK-COMPLETED BUTTON//
     
     taskcompletedButton.addEventListener("click", event=>{
@@ -119,20 +204,6 @@ createTodoForm.addEventListener("submit", event=>{
         activeItemCount()
         }) 
 
-
-    // CLEAR COMPLETED ITEMS
-    
-        document.querySelector("#clear-completed").addEventListener("click", event=>{
-        event.preventDefault();
-        if (singleEntry.classList.contains("completed-task")){
-            // singleEntry.style.display = "none"
-            entryTab.removeChild(singleEntry)
-            entryTab.removeChild(taskcompletedButton)
-           entryTab.classList.remove("entry-tab")
-           entryTab.classList.add("in-active")         
-        }
-        }) 
-    
 
     //TOGGLING DELETE-TASK-BUTTON VISIBILITY//
 
@@ -170,6 +241,25 @@ window.addEventListener("resize", function(){
     })
     
     
+    // // CLEAR COMPLETED ITEMS
+
+    const clearBtn = document.querySelectorAll("#clear-completed")
+
+    for (let i = 0; i < clearBtn.length; i++){
+
+    clearBtn[i].addEventListener("click", event=>{
+        event.preventDefault();
+        if (singleEntry.classList.contains("completed-task")){
+            // singleEntry.style.display = "none"
+            entryTab.removeChild(singleEntry)
+            entryTab.removeChild(taskcompletedButton)
+            todoList.removeChild(entryTab)    
+        }
+        }) }
+        activeItemCount()
+    
+
+
 
     //ALL/ACTIVE/COMPLETE FILTERING
 
@@ -206,6 +296,7 @@ window.addEventListener("resize", function(){
              break
         }
     })
+    
      
 }) //CLOSE ENTRY SUBMISSION
 
