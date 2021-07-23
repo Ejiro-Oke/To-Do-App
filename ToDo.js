@@ -232,7 +232,6 @@
     
 
     //ALL/ACTIVE/COMPLETE FILTERING
-    // document.querySelector(".lone-all-active-complete").value = allActiveComplete.value
     for(let i =0; i < allActiveComplete.length; ++i){
     allActiveComplete[i].addEventListener("change", event => {
         let completedTasks = document.querySelectorAll(".completed-task") ;
