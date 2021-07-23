@@ -172,12 +172,12 @@
     //TOGGLING DELETE-TASK-BUTTON VISIBILITY (ON BIG-SCREENS)//
 
     function deleteToggle(){
-    entryTab.addEventListener("mousemove", event=>{
+    entryTab.addEventListener("mouseenter", event=>{
         entryTab.appendChild(deleteTask)
         deleteTask.classList.remove("in-active");    
          })
     
-    entryTab.addEventListener("mouseout", function(){
+    entryTab.addEventListener("mouseleave", function(){
          deleteTask.classList.add("in-active");
          })
     
