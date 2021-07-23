@@ -27,6 +27,7 @@
     const filterCard = document.querySelector("#filter-card");
     const bigFilterCard = document.querySelector("#big-filter-card");
     const allActiveComplete = document.querySelectorAll(".all-active-complete");
+    const loneAllActiveComplete = document.querySelector("#lone-all-active-complete")
     const deleteTask = document.querySelector("#delete");
 
 
@@ -67,6 +68,7 @@
             bigFilterCard.classList.remove("in-active")
     } 
     else {
+            loneAllActiveComplete.classList.remove("in-active")
             filterCard.classList.remove("in-active")
     }
 
@@ -97,6 +99,7 @@
     let deleteTasksclone = document.querySelector("#delete").cloneNode( true );
 
     if(screen.width < 997){
+    loneAllActiveComplete.classList.remove("in-active")
     deleteTasksclone.setAttribute( "id", "delete" );
     entryTab.appendChild(deleteTasksclone);
     deleteTasksclone.classList.remove("in-active")
@@ -202,13 +205,18 @@
             deleteTasksclone.classList.add("in-active");
             deleteToggle();
         }
+
         if (window.outerWidth >= 997 && entryTab.classList == "entry-tab" && filterCard.classList !== "in-active"){
             bigFilterCard.classList.remove("in-active")
             }
 
         if (window.outerWidth < 997 && entryTab.classList !== "entry-tab" && filterCard.classList == "in-active") {
             filterCard.classList.remove("in-active")
-            } 
+        } else{filterCard.classList.add("in-active")}
+
+        if (window.outerWidth < 997 && entryTab.classList == "entry-tab"){
+            loneAllActiveComplete.classList.remove("in-active")
+        } else{loneAllActiveComplete.classList.add("in-active")}
         })
     
     
@@ -245,7 +253,6 @@
                 if (!singleEntry.classList.contains("completed-task")){
                     entryTab.style.display = "flex"
                 }
-
              break
              case "active":
                 if (singleEntry.classList.contains("completed-task")){

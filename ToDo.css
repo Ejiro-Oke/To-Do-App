@@ -41,7 +41,7 @@ header {
     justify-content: space-between;
     padding: 1rem;
     padding-bottom: 5rem;
-    padding-top: 3.5rem;
+    padding-top: 1.5rem;
     background: no-repeat;
     background-image:
     url('images/bg-mobile-light.jpg');
@@ -82,17 +82,17 @@ input[type="checkbox"] {
 button, .checkmark, #delete {
 margin: auto 1em;
 align-items: center;
-height: 21px;
-width: 21px;
 }
 
 #delete {
 align-self:flex-end;
+max-height: 19px;
+max-width: 19px;
 }
 
 button, .checkmark{
-height: 25px;
-width: 25px;
+min-height: 23px;
+min-width: 23px;
 border-radius: 50%;
 margin-right: 0;
 background-color: rgba(255, 255, 255, 0);
@@ -266,6 +266,7 @@ input:focus + span {
     header {
         background-image:
         url('images/bg-desktop-light.jpg');
+        padding-top: 3.5rem;
     }
     
     body.dark-mode header {
@@ -283,8 +284,8 @@ input:focus + span {
         width: 22.4em;
     }
        
-    #filter-card, .lone-all-active-complete {
-        display: none;
+    .lone-all-active-complete {
+        font-size: 14px;
     }
 
     #big-filter-card {
