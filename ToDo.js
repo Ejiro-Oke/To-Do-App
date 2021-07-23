@@ -153,9 +153,11 @@
     
     taskcompletedButton.addEventListener("click", event=>{
         event.preventDefault();
+
         if (singleEntry.classList.contains("completed-task")){
             singleEntry.removeAttribute("id", "completed-todos")
             singleEntry.classList.remove("completed-task")
+            singleEntry.setAttribute("id", "active-todos")
             taskcompletedButton.classList.remove("button-active");
             taskcompletedButton.blur()
         }
